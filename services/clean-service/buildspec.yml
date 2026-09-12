@@ -9,7 +9,7 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
-      - cd infra
+      - cd services/clean-service/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"
           -backend-config="key=services/clean-service/${ENVIRONMENT}/terraform.tfstate"
@@ -21,4 +21,5 @@ phases:
 
 artifacts:
   files:
-    - infra/tfplan
+    - services/clean-service/infra/tfplan
+    - modules/lambda-function/.build/*.zip

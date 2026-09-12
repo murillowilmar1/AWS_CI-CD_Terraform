@@ -11,6 +11,9 @@ def lambda_handler(event, context):
     clean_bucket = os.environ.get("CLEAN_BUCKET")
     environment = os.environ.get("ENVIRONMENT")
 
+    print(f"Iniciando limpieza en ambiente {environment}: {raw_bucket} -> {clean_bucket}")
+    print("Hola Mundo")
+
     # TODO 1: leer el/los objeto(s) desde `raw_bucket`
     # TODO 2: aplicar limpieza (tipos de datos, nulos, normalización, etc.)
     # TODO 3: escribir el resultado transformado en `clean_bucket`

@@ -9,7 +9,7 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
-      - cd infra
+      - cd services/ingest-sqlserver-glue/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"
           -backend-config="key=services/ingest-sqlserver-glue/${ENVIRONMENT}/terraform.tfstate"
@@ -21,4 +21,4 @@ phases:
 
 artifacts:
   files:
-    - infra/tfplan
+    - services/ingest-sqlserver-glue/infra/tfplan
