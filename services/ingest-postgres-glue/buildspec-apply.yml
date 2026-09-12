@@ -9,6 +9,7 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
+      - cp $CODEBUILD_SRC_DIR_build_output/services/ingest-postgres-glue/infra/tfplan services/ingest-postgres-glue/infra/tfplan
       - cd services/ingest-postgres-glue/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"

@@ -21,6 +21,4 @@ phases:
 
 artifacts:
   files:
-    - services/ingest-postgres-glue/infra/*.tf
     - services/ingest-postgres-glue/infra/tfplan
-    - services/ingest-postgres-glue/buildspec-apply.yml

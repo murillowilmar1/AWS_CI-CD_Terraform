@@ -56,8 +56,10 @@ resource "aws_codebuild_project" "this" {
 }
 
 # Proyecto separado para el stage Apply: el de arriba solo corre
-# "terraform plan", este corre "terraform apply tfplan" sobre el
-# artifact que ya trae el .tf y el plan generado en el Build stage.
+# "terraform plan", este corre "terraform apply tfplan". La fuente
+# primaria es el repo completo (source_output, necesario porque los
+# .tf de cada servicio referencian ../../../modules/*), y build_output
+# (el tfplan generado en el Build stage) entra como fuente secundaria.
 resource "aws_codebuild_project" "apply" {
   name         = "${var.pipeline_name}-apply"
   service_role = aws_iam_role.codebuild.arn
@@ -205,7 +207,7 @@ resource "aws_codepipeline" "this" {
       owner           = "AWS"
       provider        = "CodeBuild"
       version         = "1"
-      input_artifacts = ["build_output"]
+      input_artifacts = ["source_output", "build_output"]
 
       configuration = {
         ProjectName = aws_codebuild_project.apply.name
