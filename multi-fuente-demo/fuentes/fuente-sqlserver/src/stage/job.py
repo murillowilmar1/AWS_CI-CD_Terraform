@@ -9,6 +9,7 @@ def main():
         f"[sqlserver/stage] Limpiando s3://{args['RAW_BUCKET']}/{args['SOURCE_PREFIX']}/ "
         f"-> s3://{args['STAGE_BUCKET']}/{args['SOURCE_PREFIX']}/ ({args['ENVIRONMENT']})"
     )
+    print("Hola Mundo")
     # TODO: tipos de datos, nulos, normalización
 
 
