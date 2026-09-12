@@ -1,0 +1,9 @@
+environment = "dev"
+region      = "us-east-1"
+branch      = "dev"
+
+platform_state_bucket = "data-platform-tfstate-357032925182"
+platform_state_region = "us-east-1"
+repo_connection_arn   = "arn:aws:codeconnections:us-east-1:357032925182:connection/1f4fe77b-7231-4e37-9416-57e8e46d0684"
+repo_full_name        = "murillowilmar1/AWS_CI-CD_Terraform"
+artifact_bucket       = "data-platform-artifacts-dev-357032925182"
