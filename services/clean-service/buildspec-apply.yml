@@ -10,6 +10,8 @@ phases:
   build:
     commands:
       - cp $CODEBUILD_SRC_DIR_BuildArtifact/services/clean-service/infra/tfplan services/clean-service/infra/tfplan
+      - mkdir -p modules/lambda-function/.build
+      - cp $CODEBUILD_SRC_DIR_BuildArtifact/modules/lambda-function/.build/lambda-clean-${ENVIRONMENT}.zip modules/lambda-function/.build/lambda-clean-${ENVIRONMENT}.zip
       - cd services/clean-service/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"

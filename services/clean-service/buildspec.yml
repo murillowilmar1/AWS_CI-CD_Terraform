@@ -22,3 +22,4 @@ phases:
 artifacts:
   files:
     - services/clean-service/infra/tfplan
+    - modules/lambda-function/.build/*.zip
