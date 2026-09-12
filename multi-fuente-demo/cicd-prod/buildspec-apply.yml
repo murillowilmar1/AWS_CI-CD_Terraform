@@ -9,7 +9,6 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
-      - echo "Aplicando fuente: ${FUENTE}"
       - cp $CODEBUILD_SRC_DIR_build_output/multi-fuente-demo/fuentes/fuente-${FUENTE}/infra/tfplan multi-fuente-demo/fuentes/fuente-${FUENTE}/infra/tfplan
       - |
         if [ "${FUENTE}" = "sqlserver" ]; then
