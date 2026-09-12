@@ -18,6 +18,7 @@ def main():
     #         fecha de extracción (ej: raw/postgres/dt=2026-09-11/)
 
     print("Ingesta de Postgres completada")
+    print("Hola Mundo")
 
 
 if __name__ == "__main__":
