@@ -21,6 +21,4 @@ phases:
 
 artifacts:
   files:
-    - services/ingest-sqlserver-glue/infra/*.tf
     - services/ingest-sqlserver-glue/infra/tfplan
-    - services/ingest-sqlserver-glue/buildspec-apply.yml

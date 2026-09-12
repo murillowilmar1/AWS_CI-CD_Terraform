@@ -9,6 +9,9 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
+      - cp $CODEBUILD_SRC_DIR_build_output/services/ingest-sharepoint-lambda/infra/tfplan services/ingest-sharepoint-lambda/infra/tfplan
+      - mkdir -p modules/lambda-function/.build
+      - cp $CODEBUILD_SRC_DIR_build_output/modules/lambda-function/.build/lambda-ingest-sharepoint-${ENVIRONMENT}.zip modules/lambda-function/.build/lambda-ingest-sharepoint-${ENVIRONMENT}.zip
       - cd services/ingest-sharepoint-lambda/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"
