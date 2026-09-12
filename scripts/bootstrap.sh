@@ -4,7 +4,7 @@
 # comparten el bucket, se diferencian por la "key").
 set -euo pipefail
 
-BUCKET="CAMBIA-ESTE-BUCKET-tfstate"
+BUCKET="data-platform-tfstate-357032925182"
 REGION="us-east-1"
 
 aws s3api create-bucket --bucket "$BUCKET" --region "$REGION" || true

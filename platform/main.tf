@@ -11,18 +11,21 @@ provider "aws" {
   region = var.region
 }
 
+data "aws_caller_identity" "current" {}
+
 # ---------- Buckets de datos (raw / clean / curated) ----------
+# Sufijo de account ID para evitar colisiones de nombre global en S3.
 
 resource "aws_s3_bucket" "raw" {
-  bucket = "${var.project_name}-raw-${var.environment}"
+  bucket = "${var.project_name}-raw-${var.environment}-${data.aws_caller_identity.current.account_id}"
 }
 
 resource "aws_s3_bucket" "clean" {
-  bucket = "${var.project_name}-clean-${var.environment}"
+  bucket = "${var.project_name}-clean-${var.environment}-${data.aws_caller_identity.current.account_id}"
 }
 
 resource "aws_s3_bucket" "curated" {
-  bucket = "${var.project_name}-curated-${var.environment}"
+  bucket = "${var.project_name}-curated-${var.environment}-${data.aws_caller_identity.current.account_id}"
 }
 
 # ---------- Cifrado ----------

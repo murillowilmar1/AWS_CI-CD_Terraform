@@ -12,7 +12,7 @@ ENV=$2           # dev | prod
 ACTION=$3        # init | plan | apply
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-BUCKET="CAMBIA-ESTE-BUCKET-tfstate"
+BUCKET="data-platform-tfstate-357032925182"
 
 case "$ENV" in
   dev)  REGION="us-east-1" ;;
