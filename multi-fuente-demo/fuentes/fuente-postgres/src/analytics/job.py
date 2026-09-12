@@ -12,6 +12,7 @@ def main():
         f"-> s3://{args['ANALYTICS_BUCKET']}/{args['SOURCE_PREFIX']}/, "
         f"catalogado en {args['GLUE_DATABASE']} ({args['ENVIRONMENT']})"
     )
+    print("Hola Mundo")
     # TODO: escribir parquet particionado + registrar tabla en el Glue
     # Catalog compartido para poder consultarlo luego desde Athena.
 
