@@ -24,6 +24,7 @@ module "pipeline_ingest_sharepoint" {
   environment          = var.environment
   tfstate_bucket       = var.platform_state_bucket
   tfstate_region       = var.platform_state_region
+  require_approval     = var.environment == "prod"
 }
 
 module "pipeline_ingest_postgres" {
@@ -39,6 +40,7 @@ module "pipeline_ingest_postgres" {
   environment          = var.environment
   tfstate_bucket       = var.platform_state_bucket
   tfstate_region       = var.platform_state_region
+  require_approval     = var.environment == "prod"
 }
 
 module "pipeline_ingest_sqlserver" {
@@ -54,6 +56,7 @@ module "pipeline_ingest_sqlserver" {
   environment          = var.environment
   tfstate_bucket       = var.platform_state_bucket
   tfstate_region       = var.platform_state_region
+  require_approval     = var.environment == "prod"
 }
 
 module "pipeline_clean_service" {
@@ -69,4 +72,5 @@ module "pipeline_clean_service" {
   environment          = var.environment
   tfstate_bucket       = var.platform_state_bucket
   tfstate_region       = var.platform_state_region
+  require_approval     = var.environment == "prod"
 }

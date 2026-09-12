@@ -31,6 +31,12 @@ variable "apply_buildspec_path" {
   description = "Buildspec para el stage Apply (terraform apply tfplan)"
 }
 
+variable "require_approval" {
+  type        = bool
+  default     = true
+  description = "Si es false, el pipeline pasa de Build a Apply sin aprobación manual (uso en dev)"
+}
+
 variable "artifact_bucket" {
   type = string
 }

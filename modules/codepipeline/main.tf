@@ -177,15 +177,22 @@ resource "aws_codepipeline" "this" {
     }
   }
 
-  stage {
-    name = "Approval"
+  # Aprobación manual solo en prod. En dev el pipeline pasa directo
+  # de Build a Apply (auto-apply), para no tener que aprobar a mano
+  # cada servicio en el ambiente de práctica.
+  dynamic "stage" {
+    for_each = var.require_approval ? [1] : []
 
-    action {
-      name     = "ManualApproval"
-      category = "Approval"
-      owner    = "AWS"
-      provider = "Manual"
-      version  = "1"
+    content {
+      name = "Approval"
+
+      action {
+        name     = "ManualApproval"
+        category = "Approval"
+        owner    = "AWS"
+        provider = "Manual"
+        version  = "1"
+      }
     }
   }
 
