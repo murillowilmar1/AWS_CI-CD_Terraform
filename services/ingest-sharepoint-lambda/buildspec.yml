@@ -21,4 +21,5 @@ phases:
 
 artifacts:
   files:
+    - services/ingest-sharepoint-lambda/infra/*.tf
     - services/ingest-sharepoint-lambda/infra/tfplan

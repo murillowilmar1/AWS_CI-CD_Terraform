@@ -26,6 +26,11 @@ variable "buildspec_path" {
   type = string
 }
 
+variable "apply_buildspec_path" {
+  type        = string
+  description = "Buildspec para el stage Apply (terraform apply tfplan)"
+}
+
 variable "artifact_bucket" {
   type = string
 }

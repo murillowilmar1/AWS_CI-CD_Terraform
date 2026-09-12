@@ -21,4 +21,5 @@ phases:
 
 artifacts:
   files:
+    - services/ingest-sqlserver-glue/infra/*.tf
     - services/ingest-sqlserver-glue/infra/tfplan

@@ -21,4 +21,5 @@ phases:
 
 artifacts:
   files:
+    - services/clean-service/infra/*.tf
     - services/clean-service/infra/tfplan

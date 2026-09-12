@@ -55,6 +55,44 @@ resource "aws_codebuild_project" "this" {
   }
 }
 
+# Proyecto separado para el stage Apply: el de arriba solo corre
+# "terraform plan", este corre "terraform apply tfplan" sobre el
+# artifact que ya trae el .tf y el plan generado en el Build stage.
+resource "aws_codebuild_project" "apply" {
+  name         = "${var.pipeline_name}-apply"
+  service_role = aws_iam_role.codebuild.arn
+
+  artifacts {
+    type = "CODEPIPELINE"
+  }
+
+  environment {
+    compute_type = "BUILD_GENERAL1_SMALL"
+    image        = "aws/codebuild/amazonlinux2-x86_64-standard:5.0"
+    type         = "LINUX_CONTAINER"
+
+    environment_variable {
+      name  = "ENVIRONMENT"
+      value = var.environment
+    }
+
+    environment_variable {
+      name  = "TFSTATE_BUCKET"
+      value = var.tfstate_bucket
+    }
+
+    environment_variable {
+      name  = "TFSTATE_REGION"
+      value = var.tfstate_region
+    }
+  }
+
+  source {
+    type      = "CODEPIPELINE"
+    buildspec = var.apply_buildspec_path
+  }
+}
+
 resource "aws_iam_role" "codepipeline" {
   name = "${var.pipeline_name}-codepipeline-role"
 
@@ -163,7 +201,7 @@ resource "aws_codepipeline" "this" {
       input_artifacts = ["build_output"]
 
       configuration = {
-        ProjectName = aws_codebuild_project.this.name
+        ProjectName = aws_codebuild_project.apply.name
       }
     }
   }

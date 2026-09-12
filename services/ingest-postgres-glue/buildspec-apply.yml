@@ -14,12 +14,4 @@ phases:
           -backend-config="bucket=${TFSTATE_BUCKET}"
           -backend-config="key=services/ingest-postgres-glue/${ENVIRONMENT}/terraform.tfstate"
           -backend-config="region=${TFSTATE_REGION}"
-      - terraform plan
-          -var-file="../../../env/${ENVIRONMENT}.tfvars"
-          -var="region=${AWS_DEFAULT_REGION}"
-          -out=tfplan
-
-artifacts:
-  files:
-    - services/ingest-postgres-glue/infra/*.tf
-    - services/ingest-postgres-glue/infra/tfplan
+      - terraform apply -auto-approve tfplan
