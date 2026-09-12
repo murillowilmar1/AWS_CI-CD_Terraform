@@ -9,7 +9,7 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
-      - cp $CODEBUILD_SRC_DIR_build_output/services/clean-service/infra/tfplan services/clean-service/infra/tfplan
+      - cp $CODEBUILD_SRC_DIR_BuildArtifact/services/clean-service/infra/tfplan services/clean-service/infra/tfplan
       - cd services/clean-service/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"
