@@ -11,3 +11,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # nota: la extracción real se conecta vía JDBC a Postgres
