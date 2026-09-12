@@ -12,7 +12,6 @@ phases:
       - unzip -o terraform.zip && mv terraform /usr/local/bin/
   build:
     commands:
-      - echo "Promoviendo fuente: ${FUENTE}"
       - cd multi-fuente-demo/fuentes/fuente-${FUENTE}/infra
       - terraform init
           -backend-config="bucket=${TFSTATE_BUCKET}"
