@@ -32,6 +32,21 @@ resource "aws_codebuild_project" "this" {
     compute_type = "BUILD_GENERAL1_SMALL"
     image        = "aws/codebuild/amazonlinux2-x86_64-standard:5.0"
     type         = "LINUX_CONTAINER"
+
+    environment_variable {
+      name  = "ENVIRONMENT"
+      value = var.environment
+    }
+
+    environment_variable {
+      name  = "TFSTATE_BUCKET"
+      value = var.tfstate_bucket
+    }
+
+    environment_variable {
+      name  = "TFSTATE_REGION"
+      value = var.tfstate_region
+    }
   }
 
   source {

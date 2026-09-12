@@ -29,3 +29,18 @@ variable "buildspec_path" {
 variable "artifact_bucket" {
   type = string
 }
+
+variable "environment" {
+  type        = string
+  description = "dev o prod, se pasa al build como ENVIRONMENT"
+}
+
+variable "tfstate_bucket" {
+  type        = string
+  description = "Bucket de tfstate, se pasa al build como TFSTATE_BUCKET"
+}
+
+variable "tfstate_region" {
+  type        = string
+  description = "Región del bucket de tfstate, se pasa al build como TFSTATE_REGION"
+}

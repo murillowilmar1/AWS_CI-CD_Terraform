@@ -20,6 +20,9 @@ module "pipeline_ingest_sharepoint" {
   path_filter         = "services/ingest-sharepoint-lambda/**"
   buildspec_path      = "services/ingest-sharepoint-lambda/buildspec.yml"
   artifact_bucket     = var.artifact_bucket
+  environment         = var.environment
+  tfstate_bucket      = var.platform_state_bucket
+  tfstate_region      = var.platform_state_region
 }
 
 module "pipeline_ingest_postgres" {
@@ -31,6 +34,9 @@ module "pipeline_ingest_postgres" {
   path_filter         = "services/ingest-postgres-glue/**"
   buildspec_path      = "services/ingest-postgres-glue/buildspec.yml"
   artifact_bucket     = var.artifact_bucket
+  environment         = var.environment
+  tfstate_bucket      = var.platform_state_bucket
+  tfstate_region      = var.platform_state_region
 }
 
 module "pipeline_ingest_sqlserver" {
@@ -42,6 +48,9 @@ module "pipeline_ingest_sqlserver" {
   path_filter         = "services/ingest-sqlserver-glue/**"
   buildspec_path      = "services/ingest-sqlserver-glue/buildspec.yml"
   artifact_bucket     = var.artifact_bucket
+  environment         = var.environment
+  tfstate_bucket      = var.platform_state_bucket
+  tfstate_region      = var.platform_state_region
 }
 
 module "pipeline_clean_service" {
@@ -53,4 +62,7 @@ module "pipeline_clean_service" {
   path_filter         = "services/clean-service/**"
   buildspec_path      = "services/clean-service/buildspec.yml"
   artifact_bucket     = var.artifact_bucket
+  environment         = var.environment
+  tfstate_bucket      = var.platform_state_bucket
+  tfstate_region      = var.platform_state_region
 }
