@@ -9,6 +9,7 @@ def lambda_handler(event, context):
     """
     raw_bucket = os.environ.get("RAW_BUCKET")
     environment = os.environ.get("ENVIRONMENT")
+    print(environment)
 
     # TODO 1: autenticar contra Microsoft Graph (client credentials flow)
     # TODO 2: listar/leer los archivos o listas de SharePoint que necesitas
