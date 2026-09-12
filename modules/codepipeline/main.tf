@@ -210,7 +210,8 @@ resource "aws_codepipeline" "this" {
       input_artifacts = ["source_output", "build_output"]
 
       configuration = {
-        ProjectName = aws_codebuild_project.apply.name
+        ProjectName   = aws_codebuild_project.apply.name
+        PrimarySource = "source_output"
       }
     }
   }
