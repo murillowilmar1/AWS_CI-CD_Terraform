@@ -21,6 +21,4 @@ phases:
 
 artifacts:
   files:
-    - services/clean-service/infra/*.tf
     - services/clean-service/infra/tfplan
-    - services/clean-service/buildspec-apply.yml
