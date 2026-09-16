@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - curl -o terraform.zip -L https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip
+      - unzip -o terraform.zip && mv terraform /usr/local/bin/
+  build:
+    commands:
+      - cp $CODEBUILD_SRC_DIR_BuildArtifact/multi-zone-ci-cd/services/clean-service/infra/tfplan multi-zone-ci-cd/services/clean-service/infra/tfplan
+      - mkdir -p multi-zone-ci-cd/modules/lambda-function/.build
+      - cp $CODEBUILD_SRC_DIR_BuildArtifact/multi-zone-ci-cd/modules/lambda-function/.build/lambda-clean-${ENVIRONMENT}.zip multi-zone-ci-cd/modules/lambda-function/.build/lambda-clean-${ENVIRONMENT}.zip
+      - cd multi-zone-ci-cd/services/clean-service/infra
+      - terraform init
+          -backend-config="bucket=${TFSTATE_BUCKET}"
+          -backend-config="key=multi-zone-ci-cd/services/clean-service/${ENVIRONMENT}/terraform.tfstate"
+          -backend-config="region=${TFSTATE_REGION}"
+      - terraform apply -auto-approve tfplan
