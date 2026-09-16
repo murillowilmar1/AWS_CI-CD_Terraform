@@ -1,0 +1,30 @@
+version: 0.2
+
+# Genérico para cualquier fuente: ${FUENTE} llega como override por
+# ejecución desde la pipeline variable (ver modules/promote-pipeline).
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - curl -o terraform.zip -L https://releases.hashicorp.com/terraform/1.7.5/terraform_1.7.5_linux_amd64.zip
+      - unzip -o terraform.zip && mv terraform /usr/local/bin/
+  build:
+    commands:
+      - cd cd-multifuente/fuentes/fuente-${FUENTE}/infra
+      - terraform init
+          -backend-config="bucket=${TFSTATE_BUCKET}"
+          -backend-config="key=cd-multifuente/fuentes/fuente-${FUENTE}/${ENVIRONMENT}/terraform.tfstate"
+          -backend-config="region=${TFSTATE_REGION}"
+      - terraform plan
+          -var-file="../../../env/${ENVIRONMENT}.tfvars"
+          -var="region=${AWS_DEFAULT_REGION}"
+          -out=tfplan
+
+artifacts:
+  files:
+    # Wildcard porque no sabemos en tiempo de autoría del buildspec cuál
+    # fuente se va a ejecutar — solo una de las dos va a tener tfplan.
+    - cd-multifuente/fuentes/*/infra/tfplan
+    - cd-multifuente/modules/lambda-function/.build/*.zip
